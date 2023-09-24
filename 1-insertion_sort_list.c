@@ -14,7 +14,10 @@ void insertion_sort_list(listint_t **list)
 
 	current = *list;
 
-
+	if (!list)
+	{
+		return ();
+	}
 	while (current != NUll)
 	{
 		while (current && current->n > current->next->n)
