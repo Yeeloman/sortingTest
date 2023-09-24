@@ -2,10 +2,12 @@
 #include <stdlib.h>
 #include "sort.h"
 /**
- * insertion_sort_list - does what its name
- * suggests
- * @list: double linked list
- * Return: none
+ * insertion_sort_list - sorts a DLL of integers in
+ * ascending order using the insertion sort
+ * algorithm
+ *
+ * @list: doubly linked list
+ * Return: no return
  */
 
 void insertion_sort_list(listint_t **list)
@@ -15,9 +17,8 @@ void insertion_sort_list(listint_t **list)
 	current = *list;
 
 	if (!list)
-	{
-		return ();
-	}
+		return;
+
 	while (current != NUll)
 	{
 		while (current && current->n > current->next->n)
