@@ -34,7 +34,7 @@ void counting_sort(int *array, size_t size)
 	int *count_array, *output_array;
 	int range;
 
-	if (!array || size <2)
+	if (!array || size < 2)
 		return;
 	minMax(array, size, &min, &max);
 	range = max + 1;
