@@ -30,14 +30,14 @@ void minMax(int *array, size_t size, int *min, int *max)
 
 void counting_sort(int *array, size_t size)
 {
-	int min, max, idx, i;
+	int min, max, i, j;
 	int *count_array, *output_array;
 	int range;
 
 	if (!array || size == 0)
 		return;
 	minMax(array, size, &min, &max);
-	range = max - min + 1;
+	range = max + 1;
 	count_array = malloc(range * sizeof(int));
 	output_array = malloc(size * sizeof(int));
 	if (!count_array || !output_array)
@@ -49,18 +49,14 @@ void counting_sort(int *array, size_t size)
 	for (i = 0; i < range; i++)
 		count_array[i] = 0;
 	for (i = 0; i < (int)size; i++)
-	{
-		idx = array[i] - min;
-		count_array[idx]++;
-	}
-	for (i = 1; i < range; i++)
-		count_array[i] += count_array[i - 1];
+		count_array[array[i]]++;
+	for (j = 1; j < range; j++)
+		count_array[j + 1] += count_array[j];
 	print_array(count_array, range);
-	for (i = size - 1; i >= 0; i--)
+	for (i = 0; i < (int)size; i++)
 	{
-		idx = array[i] - min;
-		output_array[count_array[idx] - 1] = array[i];
-		count_array[idx]--;
+		count_array[array[i]]--;
+		output_array[count_array[array[i]]] = array[i];
 	}
 	for (i = 0; i < (int)size; i++)
 		array[i] = output_array[i];
